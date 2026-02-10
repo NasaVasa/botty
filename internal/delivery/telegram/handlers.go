@@ -82,7 +82,7 @@ func (h *Handlers) handleCommand(ctx context.Context, api *tgbotapi.BotAPI, upda
 		eventSlug, marketSlug, outcome, comparator, threshold, err := ParseAddAlertArgs(args)
 		if err != nil {
 			h.logger.Warn("add_alert invalid args", zap.Int64("telegram_user_id", userID), zap.String("args", args))
-			h.reply(api, chatID, "Usage: /add_alert <event_slug> <market_slug> <YES|NO> <=|>=|<|> <threshold>")
+			h.reply(api, chatID, "Usage: /add_alert <event_slug> <market_slug> <YES|NO> <=|>= <threshold>")
 			return
 		}
 		alert, err := h.alertUC.AddAlert(ctx, userID, eventSlug, marketSlug, outcome, comparator, threshold)

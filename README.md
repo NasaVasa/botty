@@ -64,7 +64,7 @@ go run ./cmd/botty
 /start
 /help
 /event <event_slug>
-/add_alert <event_slug> <market_slug> <YES|NO> <=|>=|<|> <threshold>
+/add_alert <event_slug> <market_slug> <YES|NO> <=|>= <threshold>
 /alerts
 /enable <alert_id>
 /disable <alert_id>
@@ -74,7 +74,7 @@ go run ./cmd/botty
 Пример:
 ```
 /event us-strikes-iran-by
-/add_alert us-strikes-iran-by us-strikes-iran-by-february-5-2026 YES <= 0.23
+/add_alert us-strikes-iran-by us-strikes-iran-by-june-30-2026-699-664-723-485-753-218-567-164-387-443-377-384-159-973-494-631-694-956-361-443-224-518-537-678-486-386-275-153-976-862-149 YES >= 0.5
 ```
 
 Примечания:
@@ -83,7 +83,6 @@ go run ./cmd/botty
 ## Логика сравнения цены
 - Для `<=` сравнение идет с `best_ask`.
 - Для `>=` сравнение идет с `best_bid`.
-- Если они отсутствуют, используется `price` из события WS.
 
 ## Внешние API
 Polymarket Gamma (HTTP):

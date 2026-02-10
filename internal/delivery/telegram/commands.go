@@ -10,19 +10,17 @@ const HelpText = `Commands:
 /start - register
 /help - show this help
 /event <event_slug>
-/add_alert <event_slug> <market_slug> <YES|NO> <=|>=|<|> <threshold>
+/add_alert <event_slug> <market_slug> <YES|NO> <=|>= <threshold>
 /alerts - list your alerts
 /enable <alert_id>
 /disable <alert_id>
 /delete <alert_id>
 
 Notes:
-- Use < as alias for <=, and > as alias for >=.
 - <= alerts compare against best_ask; >= alerts compare against best_bid (fallback to price).
 Example:
 /event us-strikes-iran-by
-/add_alert us-strikes-iran-by us-strikes-iran-by-february-5-2026 YES <= 0.23
-`
+/add_alert us-strikes-iran-by us-strikes-iran-by-june-30-2026-699-664-723-485-753-218-567-164-387-443-377-384-159-973-494-631-694-956-361-443-224-518-537-678-486-386-275-153-976-862-149 YES >= 0.5`
 
 var ErrInvalidArguments = errors.New("invalid arguments")
 
