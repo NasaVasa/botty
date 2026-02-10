@@ -1,0 +1,40 @@
+services:
+  botty:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: botty
+    env_file:
+      - .env
+    depends_on:
+      botty-postgres:
+        condition: service_healthy
+    networks:
+      - botty-network
+    restart: unless-stopped
+
+  botty-postgres:
+    image: postgres:16-alpine
+    container_name: botty-postgres
+    hostname: botty-postgres
+    environment:
+      POSTGRES_USER: botty
+      POSTGRES_PASSWORD: botty
+      POSTGRES_DB: botty
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - botty-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U botty"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+networks:
+  botty-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
